@@ -21,8 +21,8 @@ program fortran_call
      virial=0.0
      atom_ener=0.0
      atom_virial=0.0
-     fparam=0.0
-     aparam=0.0
+    fparam=0.0
+    aparam=0.0
     box = (/12.42, 0.0, 0.0, 0.0, 12.42, 0.0, 0.0, 0.0, 12.42/)
     atype = (/&
             0,1,1,0,1,1,0,1,1,0,&
