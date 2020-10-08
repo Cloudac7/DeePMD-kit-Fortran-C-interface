@@ -48,7 +48,7 @@ void compute_nnp(nnp *n,
 	std::vector<double>  coord_(dcoord_, dcoord_ + vsize*3);
 	std::vector<double>  box(dbox, dbox + 9);
 	std::vector<int> atype_(datype_, datype_ + vsize);
-	std::vector<double>  fparam_(dfparam_);
+	std::vector<double>  fparam_(dfparam_, dfparam_ + 1);
 	std::vector<double>  aparam_(daparam_, daparam_ + vsize);
 //	cout << "define ok" << endl;
 
