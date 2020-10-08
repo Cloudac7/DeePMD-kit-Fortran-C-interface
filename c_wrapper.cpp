@@ -50,7 +50,6 @@ void compute_nnp(nnp *n,
 	std::vector<int> atype_(datype_, datype_ + vsize);
 	double  fparam;
 	double  aparam;
-	int ago = 0;
 //	cout << "define ok" << endl;
 
 	obj -> compute(ener,
@@ -61,7 +60,6 @@ void compute_nnp(nnp *n,
 		       coord_,
 		       atype_,
 		       box,
-			   ago,
 			   fparam,
 			   aparam);
 //	cout << "input ok" << endl;

@@ -2,6 +2,7 @@
 !> \brief Interface to the DeePMD-kit or a c++ wrapper.
 !> \par History
 !>      07.2019 created [Yongbin Zhuang]
+!>      10.2020 enhanced [Yunpei Liu]
 !> \author Yongbin Zhuang
 ! **************************************************************************************************
 
@@ -33,7 +34,8 @@ MODULE deepmd_wrapper
       END SUBROUTINE
       SUBROUTINE compute_nnp_c(nnp, vecsize, &
                    dener, dforce, dvirial, datom_ener, &
-                   datom_virial, dcoord, datype, dbox) BIND(C, name="compute_nnp")
+                   datom_virial, dcoord, datype, dbox, &
+                   dfparam, daparam) BIND(C, name="compute_nnp")
          USE ISO_C_BINDING
          IMPLICIT NONE
          TYPE(C_PTR), INTENT(IN), VALUE :: nnp
