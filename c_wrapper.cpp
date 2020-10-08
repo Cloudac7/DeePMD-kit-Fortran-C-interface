@@ -60,12 +60,10 @@ void compute_nnp(nnp *n,
 		       coord_,
 		       atype_,
 		       box,
-			   fparam,
-			   aparam);
+			   fparam_,
+			   aparam_);
 //	cout << "input ok" << endl;
 	*dener = ener;
-	*dfparam = fparam;
-	*daparam = aparam;
 //	cout << "energy is " << *dener << endl;
 	for (int i=0; i<vsize*3; i++){
 		dforce[i]=force_[i];
