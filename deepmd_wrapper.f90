@@ -46,6 +46,8 @@ MODULE deepmd_wrapper
          TYPE(C_PTR), INTENT(IN), VALUE :: dcoord
          TYPE(C_PTR), INTENT(IN), VALUE :: datype
          TYPE(C_PTR), INTENT(IN), VALUE :: dbox
+         TYPE(C_PTR), INTENT(IN), VALUE :: dfparam
+         TYPE(C_PTR), INTENT(IN), VALUE :: daparam
       END SUBROUTINE
    END INTERFACE
      TYPE nnp
@@ -68,7 +70,7 @@ CONTAINS
              create_nnp%ptr = create_nnp_c(c_model)
    END FUNCTION
 
-   SUBROUTINE compute_nnp(pot, vecsize, dener, dforce, dvirial, datom_ener, datom_virial, dcoord, datype, dbox)
+   SUBROUTINE compute_nnp(pot, vecsize, dener, dforce, dvirial, datom_ener, datom_virial, dcoord, datype, dbox, dfparam, daparam)
       IMPLICIT NONE
       TYPE(C_PTR) :: pot
       INTEGER(C_INT), TARGET  :: vecsize
@@ -80,8 +82,11 @@ CONTAINS
       REAL(C_DOUBLE), POINTER :: dcoord(:)
       INTEGER(C_INT), POINTER :: datype(:)
       REAL(C_DOUBLE), POINTER :: dbox(:)
+      REAL(C_DOUBLE), POINTER :: dfparam
+      REAL(C_DOUBLE), POINTER :: daparam
       CALL compute_nnp_c(pot, C_LOC(vecsize), C_LOC(dener), C_LOC(dforce(1)), &
                                C_LOC(dvirial(1)), C_LOC(datom_ener(1)), C_LOC(datom_virial(1)),&
-                               C_LOC(dcoord(1)), C_LOC(datype(1)), C_LOC(dbox(1)))
+                               C_LOC(dcoord(1)), C_LOC(datype(1)), C_LOC(dbox(1)), &
+                               C_LOC(dfparam), C_LOC(daparam))
    END SUBROUTINE
 END MODULE deepmd_wrapper

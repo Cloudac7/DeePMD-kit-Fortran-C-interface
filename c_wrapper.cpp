@@ -29,7 +29,9 @@ void compute_nnp(nnp *n,
 		double *datom_virial,
 		double *dcoord_, 
 		int *datype_,
-		double *dbox) 
+		double *dbox, 
+		double *dfparam, 
+		double *daparam) 
 {
         
 	NNPInter *obj;
@@ -46,6 +48,9 @@ void compute_nnp(nnp *n,
 	std::vector<double>  coord_(dcoord_, dcoord_ + vsize*3);
 	std::vector<double>  box(dbox, dbox + 9);
 	std::vector<int> atype_(datype_, datype_ + vsize);
+	double  fparam;
+	double  aparam;
+	int ago = 0;
 //	cout << "define ok" << endl;
 
 	obj -> compute(ener,
@@ -55,9 +60,14 @@ void compute_nnp(nnp *n,
 		       atom_virial_,
 		       coord_,
 		       atype_,
-		       box);
+		       box,
+			   ago,
+			   fparam,
+			   aparam);
 //	cout << "input ok" << endl;
 	*dener = ener;
+	*dfparam = fparam;
+	*daparam = aparam;
 //	cout << "energy is " << *dener << endl;
 	for (int i=0; i<vsize*3; i++){
 		dforce[i]=force_[i];
