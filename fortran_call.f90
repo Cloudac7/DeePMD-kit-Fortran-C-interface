@@ -6,10 +6,12 @@ program fortran_call
     integer,target,allocatable :: atype(:)
     real(8), target,allocatable :: coord(:)
     real(8), target, allocatable  :: box(:)
+    real(8), target, allocatable :: fparam(:)
+    real(8), target, allocatable :: aparam(:)
     real(8), target :: force(190*3), virial(9), atom_ener(190), atom_virial(190*9)
-    real(8), target :: ener, fparam, aparam
-    real(8), dimension(:), pointer :: dforce, dvirial, datom_ener, datom_virial, dcoord, dbox
-    real(8), pointer :: dener, dfparam, daparam
+    real(8), target :: ener
+    real(8), dimension(:), pointer :: dforce, dvirial, datom_ener, datom_virial, dcoord, dbox, dfparam, daparam
+    real(8), pointer :: dener
     integer, dimension(:), pointer :: datype
     allocate(box(9))
     allocate(atype(190))

@@ -84,8 +84,8 @@ CONTAINS
       REAL(C_DOUBLE), POINTER :: dcoord(:)
       INTEGER(C_INT), POINTER :: datype(:)
       REAL(C_DOUBLE), POINTER :: dbox(:)
-      REAL(C_DOUBLE), POINTER :: dfparam
-      REAL(C_DOUBLE), POINTER :: daparam
+      REAL(C_DOUBLE), POINTER :: dfparam(:)
+      REAL(C_DOUBLE), POINTER :: daparam(:)
       CALL compute_nnp_c(pot, C_LOC(vecsize), C_LOC(dener), C_LOC(dforce(1)), &
                                C_LOC(dvirial(1)), C_LOC(datom_ener(1)), C_LOC(datom_virial(1)),&
                                C_LOC(dcoord(1)), C_LOC(datype(1)), C_LOC(dbox(1)), &
