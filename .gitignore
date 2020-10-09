@@ -1,0 +1,5 @@
+*.o
+*.mod
+NNPInter.h
+.vscode/*
+fortran_call

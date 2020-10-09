@@ -8,16 +8,16 @@ program fortran_call
     real(8), target, allocatable  :: box(:)
     real(8), target, allocatable :: fparam(:)
     real(8), target, allocatable :: aparam(:)
-    real(8), target :: force(190*3), virial(9), atom_ener(190), atom_virial(190*9)
+    real(8), target :: force(189*3), virial(9), atom_ener(189), atom_virial(189*9)
     real(8), target :: ener
     real(8), dimension(:), pointer :: dforce, dvirial, datom_ener, datom_virial, dcoord, dbox, dfparam, daparam
     real(8), pointer :: dener
     integer, dimension(:), pointer :: datype
     allocate(box(9))
-    allocate(atype(190))
-    allocate(coord(190*3))
+    allocate(atype(189))
+    allocate(coord(189*3))
 ! input the test data
-     vecsize=190
+     vecsize=189
      ener=0.0
      force=0.0
      virial=0.0
@@ -46,7 +46,7 @@ program fortran_call
             0,1,1,0,1,1,0,1,1,0,&
             1,1,0,1,1,0,1,1,0,1,&
             1,0,1,1,0,1,1,0,1,1,&
-            0,1,1,0,1,1,0,1,1,2/)
+            0,1,1,0,1,1,0,1,1/)
     coord = (/& 
   3.32633000 ,      2.16018000 ,      8.72841000  ,& 
   3.78076000 ,      1.31616000 ,      8.57063000  ,& 
@@ -236,8 +236,7 @@ program fortran_call
   3.77947000 ,      5.54689000 ,      0.94629400  ,& 
   2.78089000 ,     10.27510000 ,      6.92862000  ,& 
   1.98584000 ,      9.88519000 ,      7.38579000  ,& 
-  2.48104000 ,     10.60930000 ,      6.01716000  ,& 
-  11.56800000,       2.38200000,      10.69430000 /)
+  2.48104000 ,     10.60930000 ,      6.01716000  /)
 
       dener => ener
       dforce => force
