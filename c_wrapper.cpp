@@ -13,7 +13,7 @@ nnp *create_nnp(char *model)
        n = (typeof(n))malloc(sizeof(*n));
        obj    = new NNPInter(model);
        n->obj = obj;
- //      cout << "this means wrap successfully" <<endl;
+       cout << "this means wrap successfully" <<endl;
        return n; 
 }
 void delete_nnp(nnp *n)
@@ -48,9 +48,19 @@ void compute_nnp(nnp *n,
 	std::vector<double>  coord_(dcoord_, dcoord_ + vsize*3);
 	std::vector<double>  box(dbox, dbox + 9);
 	std::vector<int> atype_(datype_, datype_ + vsize);
-	std::vector<double>  fparam_(dfparam_, dfparam_ + 1);
-	std::vector<double>  aparam_(daparam_, daparam_ + vsize);
-//	cout << "define ok" << endl;
+	//std::vector<double>  fparam_(dfparam_, dfparam_ + 1);
+	//std::vector<double>  aparam_(daparam_, daparam_ + vsize);
+	std::vector<double> fparam;
+	std::vector<double> aparam;
+	int dim_fparam = obj -> dim_fparam();
+    int dim_aparam = obj -> dim_aparam();
+	if (dim_fparam == 0){
+		fparam.clear();
+	}
+	if (dim_aparam == 0){
+		aparam.clear();
+	}
+  	cout << "define ok" << endl;
 
 	obj -> compute(ener,
 		       force_,
@@ -62,9 +72,9 @@ void compute_nnp(nnp *n,
 		       box,
 			   fparam_,
 			   aparam_);
-//	cout << "input ok" << endl;
+  	cout << "input ok" << endl;
 	*dener = ener;
-//	cout << "energy is " << *dener << endl;
+	cout << "energy is " << *dener << endl;
 	for (int i=0; i<vsize*3; i++){
 		dforce[i]=force_[i];
 	}
@@ -77,6 +87,6 @@ void compute_nnp(nnp *n,
 	for (int i=0; i<vsize*9; i++){
 		datom_virial[i]=atom_virial_[i];
 	}
-//	cout << "this means vector function wrap successfully" << endl;
+	cout << "this means vector function wrap successfully" << endl;
 }
 
