@@ -69,7 +69,7 @@ CONTAINS
              create_nnp%ptr = create_nnp_c(c_model)
    END FUNCTION
 
-   SUBROUTINE compute_nnp(pot, vecsize, dener, dforce, dvirial, datom_ener, datom_virial, dcoord, datype, dbox, dfparam, daparam)
+   SUBROUTINE compute_nnp(pot, vecsize, dener, dforce, dvirial, datom_ener, datom_virial, dcoord, datype, dbox)
       IMPLICIT NONE
       TYPE(C_PTR) :: pot
       INTEGER(C_INT), TARGET  :: vecsize
