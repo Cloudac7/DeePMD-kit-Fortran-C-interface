@@ -17,9 +17,7 @@ void compute_nnp(nnp *n,
 		double *datom_virial,
 		double *dcoord_, 
 		int *datype_,
-		double *dbox,
-		double *dfparam_,
-		double *daparam_);
+		double *dbox);
 
 #ifdef __cplusplus
 }

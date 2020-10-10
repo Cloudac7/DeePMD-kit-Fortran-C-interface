@@ -6,11 +6,9 @@ program fortran_call
     integer,target,allocatable :: atype(:)
     real(8), target,allocatable :: coord(:)
     real(8), target, allocatable  :: box(:)
-    real(8), target, allocatable :: fparam(:)
-    real(8), target, allocatable :: aparam(:)
     real(8), target :: force(189*3), virial(9), atom_ener(189), atom_virial(189*9)
     real(8), target :: ener
-    real(8), dimension(:), pointer :: dforce, dvirial, datom_ener, datom_virial, dcoord, dbox, dfparam, daparam
+    real(8), dimension(:), pointer :: dforce, dvirial, datom_ener, datom_virial, dcoord, dbox
     real(8), pointer :: dener
     integer, dimension(:), pointer :: datype
     allocate(box(9))
@@ -23,9 +21,6 @@ program fortran_call
      virial=0.0
      atom_ener=0.0
      atom_virial=0.0
-    ! fparam=(/0.0/)
-    ! aparam=(/0.0/)
-    ! There is no fparam and aparam in graph.pb tested
     box = (/12.42, 0.0, 0.0, 0.0, 12.42, 0.0, 0.0, 0.0, 12.42/)
     atype = (/&
             0,1,1,0,1,1,0,1,1,0,&
@@ -246,10 +241,8 @@ program fortran_call
       dcoord => coord
       datype => atype
       dbox => box
-      dfparam => fparam
-      daparam => aparam
       pot=create_nnp('graph.pb')
-     call compute_nnp(pot%ptr, vecsize, dener, dforce, dvirial, datom_ener, datom_virial, dcoord, datype, dbox, dfparam, daparam)
+     call compute_nnp(pot%ptr, vecsize, dener, dforce, dvirial, datom_ener, datom_virial, dcoord, datype, dbox)
       print*, dener
       print*, dforce
       print*, datom_ener
